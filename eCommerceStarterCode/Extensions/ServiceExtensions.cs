@@ -27,7 +27,7 @@ namespace eCommerceStarterCode.Extensions
 
         public static void ConfigureIdentity(this IServiceCollection services)
         {
-            var builder = services.AddIdentityCore<User>(o =>
+            var builder = services.AddIdentityCore<ApplicationUser>(o =>
             {
                 o.Password.RequireDigit = true;
                 o.Password.RequireLowercase = false;

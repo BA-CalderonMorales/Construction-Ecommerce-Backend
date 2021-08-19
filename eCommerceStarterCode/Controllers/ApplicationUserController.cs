@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace eCommerceStarterCode.Controllers
 {
-    [Route("api/examples")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class ExamplesController : ControllerBase
+    public class ApplicationUserController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public ExamplesController(ApplicationDbContext context)
+        public ApplicationUserController(ApplicationDbContext context)
         {
             _context = context;
         }
-        // <baseurl>/api/examples/user
+        // <baseurl>/api/applicationuser/user
         [HttpGet("user"), Authorize]
         public IActionResult GetCurrentUser()
         {

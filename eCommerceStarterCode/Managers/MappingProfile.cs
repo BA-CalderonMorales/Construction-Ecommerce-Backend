@@ -8,7 +8,7 @@ namespace eCommerceStarterCode.Managers
     {
         public MappingProfile()
         {
-            CreateMap<UserForRegistrationDto, User>();
+            CreateMap<UserForRegistrationDto, ApplicationUser>();
         }
     }
 }

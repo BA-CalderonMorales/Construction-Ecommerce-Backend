@@ -13,10 +13,10 @@ namespace eCommerceStarterCode.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IMapper _mapper;
         private readonly IAuthenticationManager _authManager;
-        public AuthenticationController(IMapper mapper, UserManager<User> userManager, IAuthenticationManager authManager)
+        public AuthenticationController(IMapper mapper, UserManager<ApplicationUser> userManager, IAuthenticationManager authManager)
         {
             _mapper = mapper;
             _userManager = userManager;
@@ -28,7 +28,7 @@ namespace eCommerceStarterCode.Controllers
         public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDto userForRegistration)
         {
 
-            var user = _mapper.Map<User>(userForRegistration);
+            var user = _mapper.Map<ApplicationUser>(userForRegistration);
 
             var result = await _userManager.CreateAsync(user, userForRegistration.Password);
             if (!result.Succeeded)
