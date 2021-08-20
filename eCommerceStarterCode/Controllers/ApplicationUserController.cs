@@ -117,7 +117,7 @@ namespace eCommerceStarterCode.Controllers
 
             _context.Remove(entity);
             _context.SaveChanges();
-            return StatusCode(201, entity + "Removal from database successful.");
+            return StatusCode(201, entity + " Removal from database successful.");
         }
     }
 }
