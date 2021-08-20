@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace eCommerceStarterCode.Models
 {
-    public class Category
+    public class Review
     {
         [Key]
-        public int? CategoryId { get; set; }
-        public string CategoryName { get; set; } // Plumbing, Tile, Framing, Concrete...etc.
+        public int? ReviewId { get; set; }
+        public string ReviewContent { get; set; } // Written by the Customer that had work done for them.
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eCommerceStarterCode.Data;
 
 namespace eCommerceStarterCode.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210820163115_freshStart")]
+    partial class freshStart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace eCommerceStarterCode.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "da02b5b2-273e-4891-8c58-cf6d960455e5",
-                            ConcurrencyStamp = "12c1b165-7d4c-47f4-b653-e723eaf0ca23",
+                            Id = "e806687a-04e5-4218-ad71-c0cee184680a",
+                            ConcurrencyStamp = "fec5e754-aea8-40ee-8f24-5cf16c9388bc",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "a866bdcc-cfd8-4774-92c5-6c8e50f5ae31",
-                            ConcurrencyStamp = "8c12a509-bbb8-48d7-a2ec-61ef8b8903eb",
+                            Id = "3c308a74-773c-4872-8bfd-0ee4b6a51a8e",
+                            ConcurrencyStamp = "0121979d-5bcd-4e4d-be68-053bdc43d55f",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -340,6 +342,12 @@ namespace eCommerceStarterCode.Migrations
 
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("ContractId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProjectId")
+                        .HasColumnType("int");
 
                     b.HasKey("OwnerId");
 

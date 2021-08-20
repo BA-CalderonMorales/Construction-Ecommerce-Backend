@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace eCommerceStarterCode.Models
 {
-    public class Category
+    public class Customer
     {
         [Key]
-        public int? CategoryId { get; set; }
-        public string CategoryName { get; set; } // Plumbing, Tile, Framing, Concrete...etc.
+        public int? CustomerId { get; set; }
+
+        [ForeignKey("ApplicationUser")]
+        public string ApplicationUserId { get; set; }
     }
 }

@@ -10,8 +10,8 @@ using eCommerceStarterCode.Data;
 namespace eCommerceStarterCode.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210819202048_freshStart")]
-    partial class freshStart
+    [Migration("20210820170123_UpdatedTables")]
+    partial class UpdatedTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,15 +50,15 @@ namespace eCommerceStarterCode.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9c77b8aa-099f-4d68-8cc4-20c4c865f410",
-                            ConcurrencyStamp = "93f9d8d7-6111-4702-8dc5-bc7b01578313",
+                            Id = "da02b5b2-273e-4891-8c58-cf6d960455e5",
+                            ConcurrencyStamp = "12c1b165-7d4c-47f4-b653-e723eaf0ca23",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "1098d4f8-ea6d-4072-b104-fcd16c13fe8e",
-                            ConcurrencyStamp = "fecffbc7-e0f8-4fee-9f1e-3ba1ac8771e2",
+                            Id = "a866bdcc-cfd8-4774-92c5-6c8e50f5ae31",
+                            ConcurrencyStamp = "8c12a509-bbb8-48d7-a2ec-61ef8b8903eb",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -239,6 +239,216 @@ namespace eCommerceStarterCode.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("eCommerceStarterCode.Models.Category", b =>
+                {
+                    b.Property<int?>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Roofing"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Plumbing"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryName = "Tile"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            CategoryName = "Concrete"
+                        },
+                        new
+                        {
+                            CategoryId = 5,
+                            CategoryName = "Remodeling"
+                        });
+                });
+
+            modelBuilder.Entity("eCommerceStarterCode.Models.Contract", b =>
+                {
+                    b.Property<int?>("ContractId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double?>("CustomerPriceProposal")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DescriptionOfProject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Location")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("OwnerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TypeOfWork")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ContractId");
+
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Contracts");
+                });
+
+            modelBuilder.Entity("eCommerceStarterCode.Models.Customer", b =>
+                {
+                    b.Property<int?>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("CustomerId");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("eCommerceStarterCode.Models.Owner", b =>
+                {
+                    b.Property<int?>("OwnerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("OwnerId");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Owners");
+                });
+
+            modelBuilder.Entity("eCommerceStarterCode.Models.Project", b =>
+                {
+                    b.Property<int?>("ProjectId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DetailsOfProject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DurationOfProject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageOfProject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LocationOfProject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameOfProject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("OwnerId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ReviewId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProjectId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("OwnerId");
+
+                    b.HasIndex("ReviewId");
+
+                    b.ToTable("Projects");
+
+                    b.HasData(
+                        new
+                        {
+                            ProjectId = 1,
+                            CategoryId = 1,
+                            DetailsOfProject = "Details for First Project",
+                            DurationOfProject = "15 Days",
+                            ImageOfProject = "insertImageForFirstProject",
+                            LocationOfProject = "insertLocationForFirstProject",
+                            NameOfProject = "First Project"
+                        },
+                        new
+                        {
+                            ProjectId = 2,
+                            CategoryId = 2,
+                            DetailsOfProject = "Details for Second Project",
+                            DurationOfProject = "2 Days",
+                            ImageOfProject = "insertImageForSecondProject",
+                            LocationOfProject = "insertLocationForSecondProject",
+                            NameOfProject = "Second Project"
+                        },
+                        new
+                        {
+                            ProjectId = 3,
+                            CategoryId = 3,
+                            DetailsOfProject = "Details for Third Project",
+                            DurationOfProject = "2 Months",
+                            ImageOfProject = "insertImageForThirdProject",
+                            LocationOfProject = "insertLocationForThirdProject",
+                            NameOfProject = "Third Project"
+                        },
+                        new
+                        {
+                            ProjectId = 4,
+                            CategoryId = 4,
+                            DetailsOfProject = "Details for Fourth Project",
+                            DurationOfProject = "3 Months",
+                            ImageOfProject = "insertImageForFourthProject",
+                            LocationOfProject = "insertLocationForFourthProject",
+                            NameOfProject = "Fourth Project"
+                        });
+                });
+
+            modelBuilder.Entity("eCommerceStarterCode.Models.Review", b =>
+                {
+                    b.Property<int?>("ReviewId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ReviewContent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ReviewId");
+
+                    b.ToTable("Reviews");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -288,6 +498,60 @@ namespace eCommerceStarterCode.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("eCommerceStarterCode.Models.Contract", b =>
+                {
+                    b.HasOne("eCommerceStarterCode.Models.Owner", null)
+                        .WithMany("Contracts")
+                        .HasForeignKey("OwnerId");
+                });
+
+            modelBuilder.Entity("eCommerceStarterCode.Models.Customer", b =>
+                {
+                    b.HasOne("eCommerceStarterCode.Models.ApplicationUser", null)
+                        .WithMany("Customers")
+                        .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("eCommerceStarterCode.Models.Owner", b =>
+                {
+                    b.HasOne("eCommerceStarterCode.Models.ApplicationUser", null)
+                        .WithMany("Owners")
+                        .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("eCommerceStarterCode.Models.Project", b =>
+                {
+                    b.HasOne("eCommerceStarterCode.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
+
+                    b.HasOne("eCommerceStarterCode.Models.Owner", null)
+                        .WithMany("Projects")
+                        .HasForeignKey("OwnerId");
+
+                    b.HasOne("eCommerceStarterCode.Models.Review", "Reviews")
+                        .WithMany()
+                        .HasForeignKey("ReviewId");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Reviews");
+                });
+
+            modelBuilder.Entity("eCommerceStarterCode.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Customers");
+
+                    b.Navigation("Owners");
+                });
+
+            modelBuilder.Entity("eCommerceStarterCode.Models.Owner", b =>
+                {
+                    b.Navigation("Contracts");
+
+                    b.Navigation("Projects");
                 });
 #pragma warning restore 612, 618
         }

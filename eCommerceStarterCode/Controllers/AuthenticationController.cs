@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace eCommerceStarterCode.Controllers
 {
-    [Route("api/authentication")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
@@ -29,7 +29,6 @@ namespace eCommerceStarterCode.Controllers
         {
 
             var user = _mapper.Map<ApplicationUser>(userForRegistration);
-
             var result = await _userManager.CreateAsync(user, userForRegistration.Password);
             if (!result.Succeeded)
             {
@@ -39,7 +38,14 @@ namespace eCommerceStarterCode.Controllers
                 }
                 return BadRequest(ModelState);
             }
-            await _userManager.AddToRoleAsync(user, "USER");
+            if (userForRegistration.Role == "ADMIN")
+            {
+                await _userManager.AddToRoleAsync(user, userForRegistration.Role);
+            }
+            else
+            {
+                await _userManager.AddToRoleAsync(user, "USER");
+            }
             return StatusCode(201, user);
         }
 
